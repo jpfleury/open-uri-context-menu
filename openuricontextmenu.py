@@ -24,6 +24,7 @@ Testcases (some still fail):
 - (../plugins/openuricontextmenu.gedit-plugin)
 - ~/.gnome2/gedit/plugins/openuricontextmenu.gedit-plugin
 - http://www.gnome.org/~home/index.php3?test=param&another=one#final_anchor
+- www.gnome.org/index.html
 - mailto:myself@page.com?subject=Some%20matter+me
 - http://www.google.com/search?sourceid=navclient&ie=UTF-8&rls=GGLC,GGLC:1969-53,GGLC:en&q=uri+query
 - openuricontextmenu.gedit-plugin,openuricontextmenu.py
@@ -32,7 +33,7 @@ Testcases (some still fail):
 
 Loads of room for improving the URI detection ;)
 
-Version: 0.2.0
+Version: 0.3.0
 '''
 
 from gettext import gettext as _
@@ -43,12 +44,13 @@ import gedit
 import re
 import sys
 import os
+import subprocess
 import string
 
-OPEN_SCHEMES = ['file', 'http', 'https', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh']
+ACCEPTED_SCHEMES = ['file', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh', 'http', 'https']
 
 RE_DELIM = re.compile(r'[\w#/\?:%@&\=\+\.\\~-]+', re.UNICODE|re.MULTILINE)
-RE_URI_RFC2396 = re.compile("((([a-zA-Z][0-9a-zA-Z+\\-\\.]*):)?/{0,2}[0-9a-zA-Z;:,/\?@&=\+\$\.\-_!~\*'\(\)%]+)?(#[0-9a-zA-Z;,/\?:@&\=+$\.\\-_!~\*'\(\)%]+)?")
+RE_URI_RFC2396 = re.compile("((([a-zA-Z][0-9a-zA-Z+\\-\\.]*):)?/{0,2}([0-9a-zA-Z;:,/\?@&=\+\$\.\-_!~\*'\(\)%]+))?(#[0-9a-zA-Z;,/\?:@&\=+$\.\\-_!~\*'\(\)%]+)?")
 
 class OpenURIContextMenuPlugin(gedit.Plugin):
 	def __init__(self):
@@ -89,6 +91,15 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 	def update_ui(self, window):
 		pass
 
+	def browse_url(self, menu_item, url):
+		command = ['gnome-open', url]
+
+		# Avoid to run the browser as user root
+		if os.getuid() == 0 and os.environ.has_key('SUDO_USER'):
+			command = ['sudo', '-u', os.environ['SUDO_USER']] + command
+
+		subprocess.Popen(command)
+
 	def on_window_tab_added(self, window, tab):
 		self.connect_view(tab.get_view())
 
@@ -128,6 +139,16 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 		if not word:
 			return True
 
+		browse_to = False
+		if word.startswith("http://") or word.startswith("https://"):
+			browse_to = True
+		
+		if browse_to:
+			browse_uri_item = gtk.ImageMenuItem(_("Browse to '%s'") % (word))
+			browse_uri_item.set_image(gtk.image_new_from_stock(gtk.STOCK_JUMP_TO, gtk.ICON_SIZE_MENU))
+			browse_uri_item.connect('activate', self.browse_url, word);
+			browse_uri_item.show();
+
 		open_uri_item = gtk.ImageMenuItem(_("Open '%s'") % (word.replace('file://', '')))
 		open_uri_item.set_image(gtk.image_new_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_MENU))
 		open_uri_item.connect('activate', self.on_open_uri_activate, word);
@@ -138,24 +159,30 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 
 		menu.prepend(separator)
 		menu.prepend(open_uri_item)
+
+		if browse_to:
+			menu.prepend(browse_uri_item)
 		return True
 	
 	def on_open_uri_activate(self, menu_item, uri):
 		self.open_uri(uri)
 		return True
-	
+
 	def validate_uri(self, uri):
 		m = RE_URI_RFC2396.search(uri);
 		if not m:
 			return False
 		
 		target = m.group()
-		
+
 		if m.group(2) != None:
-			if m.group(3) in OPEN_SCHEMES:
+			if m.group(3) in ACCEPTED_SCHEMES:
 				return target
 			else:
 				return False
+		else:
+			if m.group(4).startswith("www."):
+				return 'http://' + target
 		
 		target = os.path.expanduser(target)
 

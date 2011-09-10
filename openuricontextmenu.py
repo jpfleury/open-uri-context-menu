@@ -1,4 +1,5 @@
 # Copyright (C) 2007-2008 Martin Szulecki
+# Copyright (C) 2011 Jean-Philippe Fleury <contact@jpfleury.net>
 #
 # This program is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public License as published by the Free Software
@@ -20,27 +21,25 @@ Adds context menu item to open an URI at the pointer position
 Testcases (some still fail):
 
 - #include <linux/smb.h>
-- <openuricontextmenu.gedit-plugin>, "openuricontextmenu.gedit-plugin"
-- (../plugins/openuricontextmenu.gedit-plugin)
-- ~/.gnome2/gedit/plugins/openuricontextmenu.gedit-plugin
+- <openuricontextmenu.plugin>, "openuricontextmenu.plugin"
+- (../plugins/openuricontextmenu.plugin)
+- ~/.local/share/gedit/plugins/openuricontextmenu.plugin
 - http://www.gnome.org/~home/index.php3?test=param&another=one#final_anchor
 - www.gnome.org/index.html
 - mailto:myself@page.com?subject=Some%20matter+me
 - http://www.google.com/search?sourceid=navclient&ie=UTF-8&rls=GGLC,GGLC:1969-53,GGLC:en&q=uri+query
-- openuricontextmenu.gedit-plugin,openuricontextmenu.py
+- openuricontextmenu.plugin,openuricontextmenu.py
 - https://bugzilla.novell.com
 - SOMEVAR=file:///var/log/messages
 
 Loads of room for improving the URI detection ;)
 
-Version: 0.3.0
+Version: 0.4.0
 '''
 
 from gettext import gettext as _
 
-import gtk
-import gobject
-import gedit
+from gi.repository import Gtk, Gedit, GObject
 import re
 import sys
 import os
@@ -52,29 +51,32 @@ ACCEPTED_SCHEMES = ['file', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh', 'http', 
 RE_DELIM = re.compile(r'[\w#/\?:%@&\=\+\.\\~-]+', re.UNICODE|re.MULTILINE)
 RE_URI_RFC2396 = re.compile("((([a-zA-Z][0-9a-zA-Z+\\-\\.]*):)?/{0,2}([0-9a-zA-Z;:,/\?@&=\+\$\.\-_!~\*'\(\)%]+))?(#[0-9a-zA-Z;,/\?:@&\=+$\.\\-_!~\*'\(\)%]+)?")
 
-class OpenURIContextMenuPlugin(gedit.Plugin):
+class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
+	__gtype_name__ = "OpenURIContextMenuPlugin"
+	window = GObject.property(type=Gedit.Window)
+
 	def __init__(self):
-		gedit.Plugin.__init__(self)
+		GObject.Object.__init__(self)
 
 		self.uri = ""
 		self.window = None
 		self.id_name = 'OpenURIContextMenuPluginID'
-		self.encoding = gedit.encoding_get_from_charset("UTF-8")
+		self.encoding = Gedit.encoding_get_from_charset("UTF-8")
 
-	def activate(self, window):
-		self.window = window
+	def do_activate(self):
+#		self.window = window
 
 		handler_ids = []
 		for signal in ('tab-added', 'tab-removed'):
 			method = getattr(self, 'on_window_' + signal.replace('-', '_'))
-			handler_ids.append(window.connect(signal, method))
-		window.set_data(self.id_name, handler_ids)
+			handler_ids.append(self.window.connect(signal, method))
+		self.window.set_data(self.id_name, handler_ids)
 
-		for view in window.get_views():
+		for view in self.window.get_views():
 			self.connect_view(view)
 
-	def deactivate(self, window):
-		widgets = [window] + window.get_views()
+	def do_deactivate(self):
+		widgets = [self.window] + self.window.get_views()
 		for widget in widgets:
 			handler_ids = widget.get_data(self.id_name)
 			if not handler_ids is None:
@@ -109,9 +111,9 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 	def on_view_populate_popup(self, view, menu):
 		doc = view.get_buffer()
 
-		win = view.get_window(gtk.TEXT_WINDOW_TEXT);
-		x, y, mod = win.get_pointer()
-		x, y = view.window_to_buffer_coords(gtk.TEXT_WINDOW_TEXT, x, y);
+		win = view.get_window(Gtk.TextWindowType.TEXT);
+		ptr_window, x, y, mod = win.get_pointer()
+		x, y = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, x, y);
 
 		# First try at pointer location
 		insert = view.get_iter_at_location(x, y);
@@ -130,7 +132,7 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 				start.forward_char();
 				break
 
-		word = unicode(doc.get_text(start, insert))
+		word = unicode(doc.get_text(start, insert, False))
 
 		if len(word) == 0:
 			return True
@@ -144,17 +146,17 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 			browse_to = True
 		
 		if browse_to:
-			browse_uri_item = gtk.ImageMenuItem(_("Browse to '%s'") % (word))
-			browse_uri_item.set_image(gtk.image_new_from_stock(gtk.STOCK_JUMP_TO, gtk.ICON_SIZE_MENU))
+			browse_uri_item = Gtk.ImageMenuItem(_("Browse to '%s'") % (word))
+			browse_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU))
 			browse_uri_item.connect('activate', self.browse_url, word);
 			browse_uri_item.show();
 
-		open_uri_item = gtk.ImageMenuItem(_("Open '%s'") % (word.replace('file://', '')))
-		open_uri_item.set_image(gtk.image_new_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_MENU))
+		open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (word.replace('file://', '')))
+		open_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU))
 		open_uri_item.connect('activate', self.on_open_uri_activate, word);
 		open_uri_item.show();
 
-		separator = gtk.SeparatorMenuItem()
+		separator = Gtk.SeparatorMenuItem()
 		separator.show();
 
 		menu.prepend(separator)
@@ -218,13 +220,13 @@ class OpenURIContextMenuPlugin(gedit.Plugin):
 	def open_uri(self, uri):
 		doc = self.get_document_by_uri(uri)
 		if doc != None :
-			tab = gedit.tab_get_from_document(doc)
+			tab = Gedit.tab_get_from_document(doc)
 			self.window.set_active_tab(tab)
 		else:
 			self.window.create_tab_from_uri(uri, self.encoding, 0, False, True)
 			status = self.window.get_statusbar()
 			status_id = status.push(status.get_context_id(self.id_name), _("Loading file '%s'...") % (uri))
-			gobject.timeout_add(4000, self.on_statusbar_timeout, status, status.get_context_id(self.id_name), status_id)
+			GObject.timeout_add(4000, self.on_statusbar_timeout, status, status.get_context_id(self.id_name), status_id)
 
 	def on_statusbar_timeout(self, status, context_id, status_id):
 		status.remove(context_id, status_id)

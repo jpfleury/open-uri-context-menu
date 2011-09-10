@@ -140,18 +140,23 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		word = self.validate_uri(word)
 		if not word:
 			return True
-
+		
+		displayed_word = word
+		if len(displayed_word) > 50:
+			displayed_word = displayed_word[:50] + u"\u2026"
+		
 		browse_to = False
 		if word.startswith("http://") or word.startswith("https://"):
 			browse_to = True
 		
 		if browse_to:
-			browse_uri_item = Gtk.ImageMenuItem(_("Browse to '%s'") % (word))
+			browse_uri_item = Gtk.ImageMenuItem(_("Browse to '%s'") % (displayed_word))
 			browse_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU))
 			browse_uri_item.connect('activate', self.browse_url, word);
 			browse_uri_item.show();
-
-		open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (word.replace('file://', '')))
+		
+		displayed_word = displayed_word.replace('file://', '')
+		open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (displayed_word))
 		open_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU))
 		open_uri_item.connect('activate', self.on_open_uri_activate, word);
 		open_uri_item.show();

@@ -1,3 +1,5 @@
+## À propos
+
 Le greffon *Open URI Context Menu* pour gedit ajoute deux options dans le menu contextuel lors d'un clic droit sur une URL contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consulter le code source.
 
 La version originale se trouve à l'adresse suivante:
@@ -7,3 +9,11 @@ La version originale se trouve à l'adresse suivante:
 et a été développée par Martin Szulecki pour gedit 2.
 
 Le présent dépôt constitue un portage du greffon vers gedit 3.
+
+## Installation
+
+Copier les fichiers `openuricontextmenu.plugin` et`openuricontextmenu.py` dans le dossier suivant:
+
+    ~/.local/share/gedit/plugins/
+
+et activer le greffon dans *Édition > Préférences > Greffon*.

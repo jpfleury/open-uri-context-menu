@@ -1,0 +1,9 @@
+Le greffon *Open URI Context Menu* pour gedit ajoute deux options dans le menu contextuel lors d'un clic droit sur une URL contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consulter le code source.
+
+La version originale se trouve à l'adresse suivante:
+
+<http://wiki.sukimashita.com/GEdit_Plugins>
+
+et a été développée par Martin Szulecki pour gedit 2.
+
+Le présent dépôt constitue un portage du greffon vers gedit 3.

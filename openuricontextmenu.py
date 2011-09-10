@@ -39,7 +39,7 @@ Version: 0.4.0
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gedit, GObject
+from gi.repository import Gtk, Gedit, Gio, GObject
 import re
 import sys
 import os
@@ -218,7 +218,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		docs = self.window.get_documents()
 
 		for d in docs [:]:
-			if d.get_uri() == uri:
+			if d.get_location() == uri:
 				return d
 		return None
 
@@ -228,7 +228,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			tab = Gedit.tab_get_from_document(doc)
 			self.window.set_active_tab(tab)
 		else:
-			self.window.create_tab_from_uri(uri, self.encoding, 0, False, True)
+			self.window.create_tab_from_location(Gio.file_new_for_uri(uri), self.encoding, 0, 0, False, True)
 			status = self.window.get_statusbar()
 			status_id = status.push(status.get_context_id(self.id_name), _("Loading file '%s'...") % (uri))
 			GObject.timeout_add(4000, self.on_statusbar_timeout, status, status.get_context_id(self.id_name), status_id)

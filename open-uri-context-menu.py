@@ -21,14 +21,14 @@ Adds context menu item to open an URI at the pointer position
 Testcases (some still fail):
 
 - #include <linux/smb.h>
-- <openuricontextmenu.plugin>, "openuricontextmenu.plugin"
-- (../plugins/openuricontextmenu.plugin)
-- ~/.local/share/gedit/plugins/openuricontextmenu.plugin
+- <open-uri-context-menu.plugin>, "open-uri-context-menu.plugin"
+- (../plugins/open-uri-context-menu.plugin)
+- ~/.local/share/gedit/plugins/open-uri-context-menu.plugin
 - http://www.gnome.org/~home/index.php3?test=param&another=one#final_anchor
 - www.gnome.org/index.html
 - mailto:myself@page.com?subject=Some%20matter+me
 - http://www.google.com/search?sourceid=navclient&ie=UTF-8&rls=GGLC,GGLC:1969-53,GGLC:en&q=uri+query
-- openuricontextmenu.plugin,openuricontextmenu.py
+- open-uri-context-menu.plugin,open-uri-context-menu.py
 - https://bugzilla.novell.com
 - SOMEVAR=file:///var/log/messages
 

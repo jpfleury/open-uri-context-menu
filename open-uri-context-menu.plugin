@@ -1,6 +1,6 @@
 [Plugin]
 Loader=python
-Module=openuricontextmenu
+Module=open-uri-context-menu
 IAge=3
 Name=Open URI Context Menu
 Description=Adds context menu item to open an URI at the pointer position.

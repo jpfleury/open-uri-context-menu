@@ -1,6 +1,6 @@
 ## À propos
 
-Le greffon *Open URI Context Menu* pour gedit ajoute deux options dans le menu contextuel lors d'un clic droit sur une URL contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consulter le code source.
+Le greffon «Open URI Context Menu» pour gedit ajoute deux options dans le menu contextuel lors d'un clic droit sur une URI contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consultation du code source.
 
 La [version originale](http://wiki.sukimashita.com/GEdit_Plugins) a été développée par Martin Szulecki pour gedit 2.
 
@@ -8,8 +8,42 @@ Le présent dépôt constitue un portage du greffon vers gedit 3.
 
 ## Installation
 
-Copier les fichiers `open-uri-context-menu.plugin` et`open-uri-context-menu.py` dans le dossier suivant:
+- [Télécharger l'archive de la dernière version.](http://jpfleury.indefero.net/p/open-uri-context-menu/source/download/master/)
 
-    ~/.local/share/gedit/plugins/
+- Décompresser l'archive.
 
-et activer le greffon dans *Édition > Préférences > Greffon*.
+- Trouver les fichiers `open-uri-context-menu.plugin` et`open-uri-context-menu.py`, et les copier dans le dossier suivant:
+
+		~/.local/share/gedit/plugins/
+
+- Activer le greffon dans le menu *Édition > Préférences > Greffon* de gedit.
+
+## Développement
+
+Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.][git]
+
+«Open URI Context Menu» dispose également d'un [système de suivi], sur lequel les rapports de bogues et les suggestions peuvent être soumis.
+
+[git]: http://jpfleury.indefero.net/p/open-uri-context-menu/source/tree/master/
+[système de suivi]: http://jpfleury.indefero.net/p/open-uri-context-menu/issues/
+
+## Licence
+
+Auteurs: Martin Szulecki <opensuse@sukimashita.com>, Jean-Philippe Fleury <contact@jpfleury.net>  
+Copyright © Martin Szulecki, 2007-2008.  
+Copyright © Jean-Philippe Fleury, 2011.
+
+Ce programme est un logiciel libre; vous pouvez le redistribuer ou le
+modifier suivant les termes de la GNU General Public License telle que
+publiée par la Free Software Foundation: soit la version 3 de cette
+licence, soit (à votre gré) toute version ultérieure.
+
+Ce programme est distribué dans l'espoir qu'il vous sera utile, mais SANS
+AUCUNE GARANTIE: sans même la garantie implicite de COMMERCIALISABILITÉ
+ni d'ADÉQUATION À UN OBJECTIF PARTICULIER. Consultez la Licence publique
+générale GNU pour plus de détails.
+
+Vous devriez avoir reçu une copie de la Licence publique générale GNU avec
+ce programme; si ce n'est pas le cas, consultez
+<http://www.gnu.org/licenses/>.
+

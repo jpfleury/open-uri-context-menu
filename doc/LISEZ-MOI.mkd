@@ -12,7 +12,7 @@ Le présent dépôt constitue un portage du greffon vers gedit 3.
 
 - Décompresser l'archive.
 
-- Trouver les fichiers `open-uri-context-menu.plugin` et`open-uri-context-menu.py`, et les copier dans le dossier suivant:
+- Trouver les fichiers `open-uri-context-menu.plugin` et `open-uri-context-menu.py`, et les copier dans le dossier suivant:
 
 		~/.local/share/gedit/plugins/
 

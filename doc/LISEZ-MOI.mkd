@@ -8,7 +8,7 @@ Le présent dépôt constitue un portage du greffon vers gedit 3.
 
 ## Dépendances
 
-Le greffon utilise la commande `gnome-open` du paquet `libgnome2-0`.
+Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Installation
 

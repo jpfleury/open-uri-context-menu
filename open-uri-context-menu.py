@@ -93,7 +93,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		pass
 
 	def browse_url(self, menu_item, url):
-		command = ['gnome-open', url]
+		command = ['xdg-open', url]
 
 		# Avoid to run the browser as user root
 		if os.getuid() == 0 and os.environ.has_key('SUDO_USER'):

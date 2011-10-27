@@ -6,6 +6,10 @@ La [version originale](http://wiki.sukimashita.com/GEdit_Plugins) a été dével
 
 Le présent dépôt constitue un portage du greffon vers gedit 3.
 
+## Dépendances
+
+Le greffon utilise la commande `gnome-open` du paquet `libgnome2-0`.
+
 ## Installation
 
 - [Télécharger l'archive de la dernière version.](http://jpfleury.indefero.net/p/open-uri-context-menu/source/download/master/)

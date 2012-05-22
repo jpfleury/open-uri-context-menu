@@ -26,7 +26,7 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Développement
 
-Dernière version: 1.0 (2012-05-08)
+Dernière version: 1.0.1 (2012-05-22)
 
 Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.][git]
 

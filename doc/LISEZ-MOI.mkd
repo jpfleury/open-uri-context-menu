@@ -26,6 +26,8 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Développement
 
+Dernière version: 1.0 (2012-05-08)
+
 Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.][git]
 
 «Open URI Context Menu» dispose également d'un [système de suivi], sur lequel les rapports de bogues et les suggestions peuvent être soumis.

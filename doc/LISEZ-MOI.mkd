@@ -14,7 +14,7 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Installation
 
-- [Télécharger l'archive de la dernière version.](http://jpfleury.indefero.net/p/open-uri-context-menu/source/download/master/)
+- [Télécharger l'archive de la dernière version.](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip)
 
 - Extraire l'archive.
 
@@ -28,18 +28,13 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 Dernière version: 1.0.1 (2012-05-22)
 
-Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.][git]
-
-«Open URI Context Menu» dispose également d'un [système de suivi], sur lequel les rapports de bogues et les suggestions peuvent être soumis.
-
-[git]: http://jpfleury.indefero.net/p/open-uri-context-menu/source/tree/master/
-[système de suivi]: http://jpfleury.indefero.net/p/open-uri-context-menu/issues/
+Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.](https://gitorious.org/projets-divers/open-uri-context-menu)
 
 ## Licence
 
-Auteurs: Martin Szulecki <opensuse@sukimashita.com>, Jean-Philippe Fleury <contact@jpfleury.net>  
+Auteurs: Martin Szulecki <<opensuse@sukimashita.com>>, Jean-Philippe Fleury (<http://www.jpfleury.net/contact.php>)  
 Copyright © Martin Szulecki, 2007-2008.  
-Copyright © Jean-Philippe Fleury, 2011.
+Copyright © Jean-Philippe Fleury, 2011, 2013.
 
 Ce programme est un logiciel libre; vous pouvez le redistribuer ou le
 modifier suivant les termes de la GNU General Public License telle que

@@ -14,7 +14,11 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Installation
 
-- [Télécharger l'archive de la dernière version.](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip)
+- Télécharger l'archive de la version correspondant à votre situation:
+
+	- pour gedit 3.6 et versions antérieures: [télécharger Open URI Context Menu 1](https://gitorious.org/projets-divers/open-uri-context-menu/archive/v1.zip);
+	
+	- pour gedit 3.8 et versions suivantes: [télécharger Open URI Context Menu 2](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip).
 
 - Extraire l'archive.
 
@@ -26,7 +30,7 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Développement
 
-Dernière version: 1.0.2 (2013-09-07)
+Dernière version: 2.0 (2013-09-08)
 
 Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.](https://gitorious.org/projets-divers/open-uri-context-menu)
 

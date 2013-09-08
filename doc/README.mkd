@@ -26,7 +26,7 @@ The plugin uses the command `xdg-open` from the package `xdg-utils`.
 
 ## Development
 
-Last version: 1.0.1 (2012-05-22)
+Last version: 1.0.2 (2013-09-07)
 
 Git is used for revision control. [Repository can be browsed online or cloned.](https://gitorious.org/projets-divers/open-uri-context-menu)
 

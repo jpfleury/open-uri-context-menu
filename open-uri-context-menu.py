@@ -1,5 +1,5 @@
 # Copyright (C) 2007-2008 Martin Szulecki
-# Copyright (C) 2011 Jean-Philippe Fleury <contact@jpfleury.net>
+# Copyright (C) 2011, 2013 Jean-Philippe Fleury <contact@jpfleury.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -59,7 +59,6 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 
 		self.uri = ""
 		self.window = None
-		self.id_name = 'OpenURIContextMenuPluginID'
 		self.encoding = Gedit.encoding_get_from_charset("UTF-8")
 
 	def do_activate(self):
@@ -69,7 +68,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		for signal in ('tab-added', 'tab-removed'):
 			method = getattr(self, 'on_window_' + signal.replace('-', '_'))
 			handler_ids.append(self.window.connect(signal, method))
-		self.window.set_data(self.id_name, handler_ids)
+		self.window.OpenURIContextMenuPluginID = handler_ids
 
 		for view in self.window.get_views():
 			self.connect_view(view)
@@ -77,17 +76,17 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 	def do_deactivate(self):
 		widgets = [self.window] + self.window.get_views()
 		for widget in widgets:
-			handler_ids = widget.get_data(self.id_name)
+			handler_ids = widget.OpenURIContextMenuPluginID
 			if not handler_ids is None:
 				for handler_id in handler_ids:
 					widget.disconnect(handler_id)
-			widget.set_data(self.id_name, None)
+			widget.OpenURIContextMenuPluginID = None
 
 		self.window = None
 
 	def connect_view(self, view):
 		handler_id = view.connect('populate-popup', self.on_view_populate_popup)
-		view.set_data(self.id_name, [handler_id])
+		view.OpenURIContextMenuPluginID = [handler_id]
 
 	def update_ui(self, window):
 		pass
@@ -131,7 +130,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 				start.forward_char();
 				break
 
-		word = unicode(doc.get_text(start, insert, False))
+		word = doc.get_text(start, insert, False)
 
 		if len(word) == 0:
 			return True
@@ -235,4 +234,3 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 	def on_statusbar_timeout(self, status, context_id, status_id):
 		status.remove(context_id, status_id)
 		return False
-

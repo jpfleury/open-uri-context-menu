@@ -14,7 +14,11 @@ The plugin uses the command `xdg-open` from the package `xdg-utils`.
 
 ## Installation
 
-- [Download the archive of the latest version.](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip)
+- Download the appropriate version according to your situation:
+
+	- for gedit 3.6 and earlier: [download Open URI Context Menu 1](https://gitorious.org/projets-divers/open-uri-context-menu/archive/v1.zip);
+	
+	- for gedit 3.8 and newer: [download Open URI Context Menu 2](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip).
 
 - Extract the archive.
 

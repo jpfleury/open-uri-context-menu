@@ -1,5 +1,5 @@
 # Copyright (C) 2007-2008 Martin Szulecki
-# Copyright (C) 2011, 2013 Jean-Philippe Fleury <contact@jpfleury.net>
+# Copyright (C) 2011 Jean-Philippe Fleury <contact@jpfleury.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

@@ -1,5 +1,3 @@
-<p lang="en"><strong><a hreflang="en" href="http://www.jpfleury.net/en/software/open-uri-context-menu.php">Read this page in English.</a></strong></p>
-
 ## À propos
 
 «Open URI Context Menu» est un greffon pour gedit, l'éditeur de texte par défaut de Gnome. Ce greffon ajoute deux options dans le menu contextuel lors d'un clic droit sur une URI contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consultation du code source.
@@ -16,9 +14,9 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 - Télécharger l'archive de la version correspondant à votre situation:
 
-	- pour gedit 3.6 et versions antérieures: [télécharger Open URI Context Menu 1](https://gitorious.org/projets-divers/open-uri-context-menu/archive/v1.zip);
+	- pour gedit 3.6 et versions antérieures: [télécharger Open URI Context Menu 1](https://github.com/jpfleury/open-uri-context-menu/archive/v1.zip);
 	
-	- pour gedit 3.8 et versions suivantes: [télécharger Open URI Context Menu 2](https://gitorious.org/projets-divers/open-uri-context-menu/archive/master.zip).
+	- pour gedit 3.8 et versions suivantes: [télécharger Open URI Context Menu 2](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip).
 
 - Extraire l'archive.
 
@@ -30,15 +28,13 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 ## Développement
 
-Dernière version: 2.0 (2013-09-08)
-
-Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.](https://gitorious.org/projets-divers/open-uri-context-menu)
+Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.](https://github.com/jpfleury/open-uri-context-menu)
 
 ## Licence
 
 Auteurs: Martin Szulecki <<opensuse@sukimashita.com>>, Jean-Philippe Fleury (<http://www.jpfleury.net/contact.php>)  
 Copyright © Martin Szulecki, 2007-2008.  
-Copyright © Jean-Philippe Fleury, 2011, 2013.
+Copyright © Jean-Philippe Fleury, 2011.
 
 Ce programme est un logiciel libre; vous pouvez le redistribuer ou le
 modifier suivant les termes de la GNU General Public License telle que
@@ -53,4 +49,3 @@ générale GNU pour plus de détails.
 Vous devriez avoir reçu une copie de la Licence publique générale GNU avec
 ce programme; si ce n'est pas le cas, consultez
 <http://www.gnu.org/licenses/>.
-

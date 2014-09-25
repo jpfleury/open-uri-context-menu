@@ -1,6 +1,8 @@
+**Note: if you use gedit 3.8 or newer, please refer to the [documentation of Open URI Context Menu v2](https://github.com/jpfleury/open-uri-context-menu). Below is the documentation of the version 1.**
+
 ## Overview
 
-"Open URI Context Menu" is a plugin for gedit, the default Gnome text editor. This plugin adds two context menu items when we right-click on an URI present in the file content: open on the browser or open on gedit to view source code.
+Open URI Context Menu is a plugin for gedit, the default Gnome text editor. This plugin adds two context menu items when we right-click on an URI present in the file content: open on the browser or open on gedit to view source code.
 
 [Original version](http://wiki.sukimashita.com/GEdit_Plugins) was developed by Martin Szulecki for gedit 2.
 
@@ -12,7 +14,7 @@ The plugin uses the command `xdg-open` from the package `xdg-utils`.
 
 ## Installation
 
-- [Download the archive of the latest version.](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip)
+- [Download the archive of Open URI Context Menu v1.](https://github.com/jpfleury/open-uri-context-menu/archive/v1.zip)
 
 - Extract the archive.
 

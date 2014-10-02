@@ -228,8 +228,8 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		else:
 			self.window.create_tab_from_location(Gio.file_new_for_uri(uri), self.encoding, 0, 0, False, True)
 			status = self.window.get_statusbar()
-			status_id = status.push(status.get_context_id(self.id_name), _("Loading file '%s'...") % (uri))
-			GObject.timeout_add(4000, self.on_statusbar_timeout, status, status.get_context_id(self.id_name), status_id)
+			status_id = status.push(status.get_context_id("OpenURIContextMenuPlugin"), _("Loading file '%s'...") % (uri))
+			GObject.timeout_add(4000, self.on_statusbar_timeout, status, status.get_context_id("OpenURIContextMenuPlugin"), status_id)
 
 	def on_statusbar_timeout(self, status, context_id, status_id):
 		status.remove(context_id, status_id)

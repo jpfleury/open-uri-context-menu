@@ -38,7 +38,7 @@ Version: 0.4.0
 
 from gettext import gettext as _
 
-from gi.repository import Gtk, Gedit, Gio, GObject
+from gi.repository import Gtk, Gedit, Gio, GObject, GtkSource
 import re
 import sys
 import os
@@ -59,7 +59,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 
 		self.uri = ""
 		self.window = None
-		self.encoding = Gedit.encoding_get_from_charset("UTF-8")
+		self.encoding = GtkSource.Encoding.get_from_charset("UTF-8")
 
 	def do_activate(self):
 #		self.window = window

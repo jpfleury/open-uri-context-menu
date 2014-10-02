@@ -14,9 +14,9 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 - Télécharger l'archive de la version correspondant à votre situation:
 
-	- pour gedit 3.6 et versions antérieures: [télécharger Open URI Context Menu 1](https://github.com/jpfleury/open-uri-context-menu/archive/v1.zip);
+	- pour gedit 3.0 à 3.6: [télécharger Open URI Context Menu v1](https://github.com/jpfleury/open-uri-context-menu/archive/v1.zip);
 	
-	- pour gedit 3.8 et versions suivantes: [télécharger Open URI Context Menu 2](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip).
+	- pour gedit 3.8 à 3.12: [télécharger Open URI Context Menu v2](https://github.com/jpfleury/open-uri-context-menu/archive/v2.zip).
 
 - Extraire l'archive.
 

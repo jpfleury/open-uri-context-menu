@@ -86,11 +86,17 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 		x, y = view.window_to_buffer_coords(Gtk.TextWindowType.TEXT, x, y);
 
 		# First try at pointer location
+		# Starting with GTK 3.20, get_iter_at_location returns a tuple of type
+		# (gboolean, GtkTextIter).  Earlier versions return only the GtkTextIter.
 		insert = view.get_iter_at_location(x, y);
+		if isinstance(insert, tuple):
+			insert = insert[1] if insert[0] else None
 
 		# Second try at cursor
 		if insert == None:
 			insert = doc.get_iter_at_mark(doc.get_insert())
+			if isinstance(insert, tuple):
+				insert = insert[1] if insert[0] else None
 
 		while insert.forward_char():
 			if not RE_DELIM.match(insert.get_char()):
@@ -164,7 +170,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			if os.path.isabs(target):
 				return 'file://' + target
 
-		doc_dir = self.window.get_active_document().get_uri()
+		doc_dir = self.window.get_active_document().get_uri_for_display()
 		if doc_dir != None:
 			if doc_dir.startswith('file://'):
 				f = os.path.join(os.path.dirname(doc_dir), target)

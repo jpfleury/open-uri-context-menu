@@ -156,6 +156,10 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			return False
 
 		target = m.group()
+
+		if m.group(4) == None or m.group(4) == "/":
+			return False
+
 		if m.group(2) != None:
 			if m.group(3) in ACCEPTED_SCHEMES:
 				return target

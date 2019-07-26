@@ -19,7 +19,7 @@ Adds context menu item to open an URI at the pointer position
 '''
 
 from gettext import gettext as _
-from gi.repository import Gtk, Gedit, Gio, GObject, GtkSource
+from gi.repository import Gtk, Gdk, Gedit, Gio, GObject, GtkSource
 import re
 import sys
 import os
@@ -132,15 +132,24 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			browse_uri_item.show();
 
 		displayed_word = displayed_word.replace('file://', '')
+		
+		copy_uri_item = Gtk.ImageMenuItem(_("Copy URI '%s'" % (displayed_word)))
+		copy_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU))
+		copy_uri_item.connect('activate', self.on_copy_uri_activate, word)
+		copy_uri_item.show()
+
 		open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (displayed_word))
 		open_uri_item.set_image(Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU))
 		open_uri_item.connect('activate', self.on_open_uri_activate, word);
 		open_uri_item.show();
+		
 
 		separator = Gtk.SeparatorMenuItem()
 		separator.show();
 		menu.prepend(separator)
+		menu.prepend(copy_uri_item)
 		menu.prepend(open_uri_item)
+
 
 		if browse_to:
 			menu.prepend(browse_uri_item)
@@ -148,6 +157,10 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 
 	def on_open_uri_activate(self, menu_item, uri):
 		self.open_uri(uri)
+		return True
+
+	def on_copy_uri_activate(self, menu_item, uri):
+		self.copy_uri(uri)
 		return True
 
 	def validate_uri(self, uri):
@@ -211,6 +224,10 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			                        _("Loading file '%s'...") % (uri))
 			GObject.timeout_add(4000, self.on_statusbar_timeout, status,
 			                    status.get_context_id("OpenURIContextMenuPlugin"), status_id)
+
+	def copy_uri(self, uri):
+		clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+		clipboard.set_text(uri, -1)
 
 	def on_statusbar_timeout(self, status, context_id, status_id):
 		status.remove(context_id, status_id)

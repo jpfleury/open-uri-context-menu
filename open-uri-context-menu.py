@@ -194,7 +194,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 	def get_document_by_uri(self, uri):
 		docs = self.window.get_documents()
 		for d in docs [:]:
-			if d.get_location() == uri:
+			if d.get_file().get_location() == uri:
 				return d
 		return None
 

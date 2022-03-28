@@ -174,7 +174,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			if os.path.isabs(target):
 				return 'file://' + target
 
-		doc_dir = self.window.get_active_document().get_uri_for_display()
+		doc_dir = self.window.get_active_document().get_file().get_location().get_uri()
 		if doc_dir != None:
 			if doc_dir.startswith('file://'):
 				f = os.path.join(os.path.dirname(doc_dir), target)
@@ -194,7 +194,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 	def get_document_by_uri(self, uri):
 		docs = self.window.get_documents()
 		for d in docs [:]:
-			if d.get_location() == uri:
+			if d.get_file().get_location() == uri:
 				return d
 		return None
 

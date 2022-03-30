@@ -24,7 +24,6 @@ import re
 import sys
 import os
 import subprocess
-import string
 
 ACCEPTED_SCHEMES = ['file', 'ftp', 'sftp', 'smb', 'dav', 'davs', 'ssh', 'http', 'https']
 RE_DELIM = re.compile(r'[\w#/\?:%@&\=\+\.\\~-]+', re.UNICODE|re.MULTILINE)
@@ -183,7 +182,7 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
 			else:
 				return os.path.join(os.path.dirname(doc_dir), target)
 
-		paths = string.split(os.environ["PATH"], os.pathsep)
+		paths = str.split(os.environ["PATH"], os.pathsep)
 		for dirname in paths:
 			f = os.path.join(os.path.dirname(dirname), 'include', target)
 			if os.path.isfile(f):

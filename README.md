@@ -18,7 +18,7 @@ The plugin uses the command `xdg-open` from the package `xdg-utils`.
 	
 	- for gedit 3.8 to 3.12: [download Open URI Context Menu v2](https://github.com/jpfleury/open-uri-context-menu/archive/v2.zip);
 	
-	- for gedit 3.14 and newer: [download Open URI Context Menu v3](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip).
+	- for gedit 3.14 to 3.28: [download Open URI Context Menu v3](https://github.com/jpfleury/open-uri-context-menu/archive/v3.zip).
 
 - Extract the archive.
 

@@ -2,9 +2,7 @@
 
 «Open URI Context Menu» est un greffon pour gedit, l'éditeur de texte par défaut de Gnome. Ce greffon ajoute deux options dans le menu contextuel lors d'un clic droit sur une URI contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consultation du code source.
 
-La [version originale](http://wiki.sukimashita.com/GEdit_Plugins) a été développée par Martin Szulecki pour gedit 2.
-
-Le présent dépôt constitue un portage du greffon vers gedit 3.
+![Menu contextuel de gedit avec les options du greffon](https://raw.githubusercontent.com/jpfleury/open-uri-context-menu/master/assets/example-context-menu.png)
 
 ## Dépendances
 
@@ -20,7 +18,9 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 	
 	- pour gedit 3.14 à 3.28: [télécharger Open URI Context Menu v3](https://github.com/jpfleury/open-uri-context-menu/archive/v3.zip);
 	
-	- pour gedit 3.36 à 3.38: [télécharger Open URI Context Menu v4](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip).
+	- pour gedit 3.36 à 3.38: [télécharger Open URI Context Menu v4](https://github.com/jpfleury/open-uri-context-menu/archive/v4.zip);
+	
+	- pour gedit 41+: [télécharger Open URI Context Menu v5](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip);
 
 - Extraire l'archive.
 
@@ -34,11 +34,12 @@ Le greffon utilise la commande `xdg-open` du paquet `xdg-utils`.
 
 Le logiciel Git est utilisé pour la gestion de versions. [Le dépôt peut être consulté en ligne ou récupéré en local.](https://github.com/jpfleury/open-uri-context-menu)
 
+La version originale a été développée par Martin Szulecki pour gedit 2. Le présent dépôt constitue un portage du greffon vers gedit 3 et versions ultérieures.
+
 ## Licence
 
-Auteurs: Martin Szulecki <<opensuse@sukimashita.com>>, Jean-Philippe Fleury (<http://www.jpfleury.net/contact.php>)  
-Copyright © Martin Szulecki, 2007-2008.  
-Copyright © Jean-Philippe Fleury, 2011.
+Copyright © 2011-2014, 2019, 2025 Jean-Philippe Fleury <https://github.com/jpfleury>  
+Copyright © 2007-2008 Martin Szulecki <opensuse@sukimashita.com>
 
 Ce programme est un logiciel libre; vous pouvez le redistribuer ou le
 modifier suivant les termes de la GNU General Public License telle que

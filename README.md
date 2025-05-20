@@ -1,30 +1,30 @@
 ## Overview
 
-"Open URI Context Menu" is a plugin for gedit, the default Gnome text editor. This plugin adds two context menu items when we right-click on an URI present in the file content: open on the browser or open on gedit to view source code.
+"Open URI Context Menu" is a plugin for gedit, the default GNOME text editor. This plugin adds two context menu items when you right-click on a URI present in the file content: open in the browser or open in gedit to view the source code.
 
-[Original version](http://wiki.sukimashita.com/GEdit_Plugins) was developed by Martin Szulecki for gedit 2.
-
-The current repository is a port of the plugin to gedit 3.
+![Context menu in gedit with URI options](https://raw.githubusercontent.com/jpfleury/open-uri-context-menu/master/assets/example-context-menu.png)
 
 ## Requirements
 
-The plugin uses the command `xdg-open` from the package `xdg-utils`.
+The plugin uses the `xdg-open` command from the `xdg-utils` package.
 
 ## Installation
 
-- Download the appropriate version according to your situation:
+- Download the appropriate version according to your setup:
 
 	- for gedit 3.0 to 3.6: [download Open URI Context Menu v1](https://github.com/jpfleury/open-uri-context-menu/archive/v1.zip);
 	
 	- for gedit 3.8 to 3.12: [download Open URI Context Menu v2](https://github.com/jpfleury/open-uri-context-menu/archive/v2.zip);
 	
-	- for gedit 3.14 to 3.28: [download Open URI Context Menu v3](https://github.com/jpfleury/open-uri-context-menu/archive/v3.zip).
+	- for gedit 3.14 to 3.28: [download Open URI Context Menu v3](https://github.com/jpfleury/open-uri-context-menu/archive/v3.zip);
 	
-	- for gedit 3.36 to 3.38: [download Open URI Context Menu v4](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip).
+	- for gedit 3.36 to 3.38: [download Open URI Context Menu v4](https://github.com/jpfleury/open-uri-context-menu/archive/v4.zip);
+	
+	- for gedit 41 and later: [download Open URI Context Menu v5](https://github.com/jpfleury/open-uri-context-menu/archive/master.zip);
 
 - Extract the archive.
 
-- Copy files `open-uri-context-menu.plugin` and `open-uri-context-menu.py` in the following folder:
+- Copy the files `open-uri-context-menu.plugin` and `open-uri-context-menu.py` into the following folder:
 
 		~/.local/share/gedit/plugins/
 
@@ -32,13 +32,14 @@ The plugin uses the command `xdg-open` from the package `xdg-utils`.
 
 ## Development
 
-Git is used for revision control. [Repository can be browsed online or cloned.](https://github.com/jpfleury/open-uri-context-menu)
+Git is used for version control. [The repository can be browsed online or cloned.](https://github.com/jpfleury/open-uri-context-menu)
+
+The original version was developed by Martin Szulecki for gedit 2. The current repository is a port of the plugin for gedit 3 and later versions.
 
 ## License
 
-Authors: Martin Szulecki <<opensuse@sukimashita.com>>, Jean-Philippe Fleury (<http://www.jpfleury.net/en/contact.php>)  
-Copyright © 2007-2008 Martin Szulecki  
-Copyright © 2011 Jean-Philippe Fleury
+Copyright © 2011-2014, 2019, 2025 Jean-Philippe Fleury <https://github.com/jpfleury>  
+Copyright © 2007-2008 Martin Szulecki <opensuse@sukimashita.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

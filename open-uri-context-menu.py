@@ -1,6 +1,6 @@
 """
 This file is part of Open URI Context Menu.
-Adds context menu actions in gedit to open or browse the URI under the pointer.
+Adds context menu actions in gedit to open, browse or copy the URI under the pointer.
 
 Copyright (C) 2011-2014, 2019, 2025 Jean-Philippe Fleury
 Copyright (C) 2007-2008 Martin Szulecki
@@ -26,7 +26,7 @@ import subprocess
 
 from gettext import gettext as _
 
-from gi.repository import Gedit, Gio, GObject, Gtk, GtkSource
+from gi.repository import Gdk, Gedit, Gio, GObject, Gtk, GtkSource
 
 ACCEPTED_SCHEMES = ["file", "ftp", "sftp", "smb", "dav", "davs", "ssh", "http", "https"]
 RE_DELIM = re.compile(r"[\w#/\?:%@&=+\.'\\~\-']+", re.UNICODE | re.MULTILINE)
@@ -124,6 +124,13 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
         if len(displayed_word) > 50:
             displayed_word = displayed_word[:50] + "\u2026"
 
+        copy_uri_item = Gtk.ImageMenuItem(_("Copy '%s'") % (displayed_word))
+        copy_uri_item.set_image(
+            Gtk.Image.new_from_stock(Gtk.STOCK_COPY, Gtk.IconSize.MENU)
+        )
+        copy_uri_item.connect("activate", self.on_copy_uri_activate, word)
+        copy_uri_item.show()
+
         browse_to = False
         if word.startswith("http://") or word.startswith("https://"):
             browse_to = True
@@ -136,7 +143,6 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
             browse_uri_item.connect("activate", self.browse_url, word)
             browse_uri_item.show()
 
-        displayed_word = displayed_word.replace("file://", "")
         open_uri_item = Gtk.ImageMenuItem(_("Open '%s'") % (displayed_word))
         open_uri_item.set_image(
             Gtk.Image.new_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.MENU)
@@ -147,10 +153,17 @@ class OpenURIContextMenuPlugin(GObject.Object, Gedit.WindowActivatable):
         separator = Gtk.SeparatorMenuItem()
         separator.show()
         menu.prepend(separator)
+        menu.prepend(copy_uri_item)
         menu.prepend(open_uri_item)
 
         if browse_to:
             menu.prepend(browse_uri_item)
+        return True
+
+    def on_copy_uri_activate(self, menu_item, uri):
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(uri, -1)
+        clipboard.store()
         return True
 
     def on_open_uri_activate(self, menu_item, uri):

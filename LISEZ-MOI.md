@@ -1,6 +1,10 @@
 ## À propos
 
-«Open URI Context Menu» est un greffon pour gedit, l'éditeur de texte par défaut de Gnome. Ce greffon ajoute deux options dans le menu contextuel lors d'un clic droit sur une URI contenue dans le texte d'un fichier: ouverture dans le navigateur ou ouverture dans gedit pour consultation du code source.
+«Open URI Context Menu» est un greffon pour gedit, l'éditeur de texte par défaut de Gnome. Ce greffon ajoute 3 options dans le menu contextuel lors d'un clic droit sur une URI contenue dans le texte d'un fichier:
+
+- ouverture dans le navigateur
+- ouverture dans gedit pour consultation du code source
+- copie dans le presse-papier
 
 ![Menu contextuel de gedit avec les options du greffon](https://raw.githubusercontent.com/jpfleury/open-uri-context-menu/master/assets/example-context-menu.png)
 

@@ -1,6 +1,10 @@
 ## Overview
 
-"Open URI Context Menu" is a plugin for gedit, the default GNOME text editor. This plugin adds two context menu items when you right-click on a URI present in the file content: open in the browser or open in gedit to view the source code.
+"Open URI Context Menu" is a plugin for gedit, the default GNOME text editor. This plugin adds 3 context menu items when you right-click on a URI present in the file content:
+
+- open in the browser
+- open in gedit to view the source code
+- copy to the clipboard
 
 ![Context menu in gedit with URI options](https://raw.githubusercontent.com/jpfleury/open-uri-context-menu/master/assets/example-context-menu.png)
 
